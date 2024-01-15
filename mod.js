@@ -1,6 +1,6 @@
 const emma = require ('path');
 
-console.log(emma.sep);
+console.log(emma);
 
 
 
