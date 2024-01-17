@@ -33,11 +33,30 @@ const read = readFile("emma.txt", "utf8", (error, text) => {
 console.log(read)
  */
 
-const { writeFileSync } = require("fs");
+let fs = require("fs");
+let http = require("http");
 
-for (let i = 0; i < 1000; i++) {
-  writeFileSync("heaven.txt", `ACE is a god level programmer #${i}\n`, {
-    flag: "a",
+// const read = createReadStream("heaven.txt", {
+//   highWaterMark: 9000,
+//    encoding: "utf8",
+// });
+
+// read.on("data", (result) => {
+//   console.log(result);
+// });
+
+http
+  .createServer((req, res) => {
+    const fileStream = fs.createReadStream("heaven.txt", "utf8");
+
+    fileStream.on("open", () => {
+      fileStream.pipe(res);
+    });
+
+    fileStream.on("error", (err) => {
+      res.end(err);
+    });
+  })
+  .listen(5000, () => {
+    console.log("open now");
   });
-}
-
