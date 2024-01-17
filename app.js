@@ -33,5 +33,11 @@ const read = readFile("emma.txt", "utf8", (error, text) => {
 console.log(read)
  */
 
+const { writeFileSync } = require("fs");
 
-console.log('read is good for the brain and eyes ')
+for (let i = 0; i < 1000; i++) {
+  writeFileSync("heaven.txt", `ACE is a god level programmer #${i}\n`, {
+    flag: "a",
+  });
+}
+

@@ -1,15 +1,22 @@
-const http = require ('http');
+const { readFile, writeFile } = require("fs").promises;
+const http = require("http");
+const util = require("util");
 
-const server = http.createServer((req, res) => {
-    console.log('request event');
-    res.end('Hello World');
-})
+// const readFilePromise = util.promisify(readFile);
 
-// server.listen(5000, ()=>{
-    // console.log('Server listening to port 5000.........')
-// })
+const start = async () => {
+  const first = await readFile("emma.txt", "utf8");
+  const second = await readFile("gab.txt", "utf8");
+  await writeFile("heaven.txt", "ACEmmanuel has ascended");
+  console.log(`${first}, ${second}`);
+};
 
+start();
 
-for (let i = 0; i < 10; i++) {
-    
-}
+// readFile("emma.txt", "utf8", (err, data) => {
+//   if (err) {
+//     return;
+//   } else {
+//     console.log(data);
+//   }
+// });
